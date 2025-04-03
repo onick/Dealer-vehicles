@@ -1,0 +1,28 @@
+{
+  "name": "dealer-mcp-server",
+  "version": "0.1.0",
+  "description": "MCP Server for Car Dealership Management",
+  "main": "dist/main.js",
+  "type": "module",
+  "scripts": {
+    "start": "bun run src/main.ts",
+    "build": "bun build src/main.ts --outdir dist",
+    "test": "bun test",
+    "lint": "bunx @biomejs/biome lint .",
+    "format": "bunx @biomejs/biome format ."
+  },
+  "keywords": ["mcp", "dealer", "server"],
+  "author": "Marcelino Francisco Martinez",
+  "license": "MIT",
+  "dependencies": {
+    "typescript": "^5.3.0"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^1.4.1",
+    "@types/node": "^20.0.0",
+    "bun-types": "^1.0.0"
+  },
+  "engines": {
+    "bun": "^1.0.0"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "tool": "testDrive",
+  "method": "scheduleTestDrive",
+  "params": {
+    "customer": "María García",
+    "vehicle": "Honda Civic",
+    "date": "2024-04-04",
+    "time": "14:00"
+  }
+}
