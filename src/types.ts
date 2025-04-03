@@ -36,3 +36,57 @@ export interface TestDrive {
   time: string;
   status: 'Pending' | 'Confirmed' | 'Cancelled';
 }
+
+// Tipos para cotizaciones
+export interface QuotationItem {
+  description: string;
+  quantity: number;
+  unitPrice: number;
+  discount?: number;
+  tax?: number;
+}
+
+export interface Quotation {
+  id: string;
+  customerId: string;
+  customerName: string;
+  customerEmail?: string;
+  customerPhone?: string;
+  date: string;
+  expirationDate: string;
+  items: QuotationItem[];
+  notes?: string;
+  status: 'draft' | 'sent' | 'accepted' | 'rejected' | 'expired';
+  totalBeforeTax: number;
+  totalTax: number;
+  totalAmount: number;
+}
+
+// Tipos para facturas
+export interface InvoiceItem {
+  description: string;
+  quantity: number;
+  unitPrice: number;
+  discount?: number;
+  tax?: number;
+}
+
+export interface Invoice {
+  id: string;
+  invoiceNumber: string;
+  customerId: string;
+  customerName: string;
+  customerEmail?: string;
+  customerPhone?: string;
+  customerAddress?: string;
+  date: string;
+  dueDate: string;
+  items: InvoiceItem[];
+  notes?: string;
+  status: 'pending' | 'paid' | 'overdue' | 'cancelled';
+  paymentMethod?: string;
+  paymentDate?: string;
+  totalBeforeTax: number;
+  totalTax: number;
+  totalAmount: number;
+}

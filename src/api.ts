@@ -65,7 +65,7 @@ app.get('/api/docs', (req, res) => {
         method: 'POST',
         description: 'Punto de entrada principal para ejecutar comandos MCP',
         body: {
-          tool: 'Nombre de la herramienta (inventory, financing, testDrive)',
+          tool: 'Nombre de la herramienta (inventory, financing, testDrive, quotation, invoice)',
           method: 'Método a ejecutar',
           params: 'Parámetros para el método (opcional)'
         }
@@ -163,6 +163,112 @@ app.get('/api/tools', (req, res) => {
             customer: 'Nombre del cliente', 
             vehicle: 'Vehículo', 
             newStatus: 'Nuevo estado (Pending, Confirmed, Cancelled)'
+          }
+        }
+      ],
+      quotation: [
+        {
+          method: 'createQuotation',
+          description: 'Crear una nueva cotización',
+          params: {
+            customerId: 'ID del cliente',
+            customerName: 'Nombre del cliente',
+            customerEmail: 'Email del cliente (opcional)',
+            customerPhone: 'Teléfono del cliente (opcional)',
+            date: 'Fecha de cotización (YYYY-MM-DD)',
+            expirationDate: 'Fecha de vencimiento (YYYY-MM-DD)',
+            items: 'Array de items (ver documentación)',
+            notes: 'Notas adicionales (opcional)',
+            status: 'Estado (draft, sent, accepted, rejected, expired)'
+          }
+        },
+        {
+          method: 'getQuotation',
+          description: 'Obtener detalles de una cotización',
+          params: 'ID de la cotización'
+        },
+        {
+          method: 'listQuotations',
+          description: 'Listar cotizaciones',
+          params: 'Objeto con filtros (opcional)'
+        },
+        {
+          method: 'updateQuotationStatus',
+          description: 'Actualizar estado de una cotización',
+          params: {
+            id: 'ID de la cotización',
+            status: 'Nuevo estado (draft, sent, accepted, rejected, expired)'
+          }
+        },
+        {
+          method: 'generateQuotationPDF',
+          description: 'Generar PDF de cotización',
+          params: 'ID de la cotización'
+        },
+        {
+          method: 'sendQuotationByEmail',
+          description: 'Enviar cotización por email',
+          params: {
+            id: 'ID de la cotización',
+            email: 'Email destinatario'
+          }
+        }
+      ],
+      invoice: [
+        {
+          method: 'createInvoice',
+          description: 'Crear una nueva factura',
+          params: {
+            customerId: 'ID del cliente',
+            customerName: 'Nombre del cliente',
+            customerEmail: 'Email del cliente (opcional)',
+            customerPhone: 'Teléfono del cliente (opcional)',
+            customerAddress: 'Dirección del cliente (opcional)',
+            date: 'Fecha de factura (YYYY-MM-DD)',
+            dueDate: 'Fecha de vencimiento (YYYY-MM-DD)',
+            items: 'Array de items (ver documentación)',
+            notes: 'Notas adicionales (opcional)',
+            status: 'Estado (pending, paid, overdue, cancelled)'
+          }
+        },
+        {
+          method: 'getInvoice',
+          description: 'Obtener detalles de una factura',
+          params: 'ID de la factura'
+        },
+        {
+          method: 'listInvoices',
+          description: 'Listar facturas',
+          params: 'Objeto con filtros (opcional)'
+        },
+        {
+          method: 'updateInvoiceStatus',
+          description: 'Actualizar estado de una factura',
+          params: {
+            id: 'ID de la factura',
+            status: 'Nuevo estado (pending, paid, overdue, cancelled)'
+          }
+        },
+        {
+          method: 'recordPayment',
+          description: 'Registrar pago de una factura',
+          params: {
+            id: 'ID de la factura',
+            paymentMethod: 'Método de pago',
+            paymentDate: 'Fecha de pago (YYYY-MM-DD)'
+          }
+        },
+        {
+          method: 'generateInvoicePDF',
+          description: 'Generar PDF de factura',
+          params: 'ID de la factura'
+        },
+        {
+          method: 'sendInvoiceByEmail',
+          description: 'Enviar factura por email',
+          params: {
+            id: 'ID de la factura',
+            email: 'Email destinatario'
           }
         }
       ]

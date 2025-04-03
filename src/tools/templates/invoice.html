@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Factura {{invoiceNumber}}</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+      color: #333;
+    }
+    .header {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    .logo {
+      max-width: 200px;
+      height: auto;
+    }
+    .company-name {
+      font-size: 28px;
+      font-weight: bold;
+      margin: 10px 0;
+    }
+    .document-title {
+      font-size: 24px;
+      margin: 15px 0;
+      color: #27ae60;
+    }
+    .info-section {
+      margin-bottom: 20px;
+    }
+    .customer-info, .invoice-info {
+      display: inline-block;
+      vertical-align: top;
+      width: 48%;
+    }
+    .customer-info {
+      text-align: left;
+    }
+    .invoice-info {
+      text-align: right;
+    }
+    .label {
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 20px 0;
+    }
+    th, td {
+      border: 1px solid #ddd;
+      padding: 12px;
+      text-align: left;
+    }
+    th {
+      background-color: #f2f2f2;
+      font-weight: bold;
+    }
+    .amount {
+      text-align: right;
+    }
+    .total-section {
+      margin-top: 30px;
+      text-align: right;
+    }
+    .total-row {
+      margin: 5px 0;
+    }
+    .grand-total {
+      font-size: 18px;
+      font-weight: bold;
+      margin-top: 10px;
+      color: #27ae60;
+    }
+    .payment-info {
+      margin-top: 30px;
+      padding: 15px;
+      background-color: #f9f9f9;
+      border: 1px solid #ddd;
+    }
+    .notes {
+      margin-top: 30px;
+      border-top: 1px solid #ddd;
+      padding-top: 20px;
+    }
+    .footer {
+      margin-top: 50px;
+      font-size: 12px;
+      text-align: center;
+      color: #777;
+    }
+    .status {
+      padding: 5px 10px;
+      display: inline-block;
+      border-radius: 3px;
+      font-weight: bold;
+    }
+    .status-pending {
+      background-color: #f39c12;
+      color: white;
+    }
+    .status-paid {
+      background-color: #27ae60;
+      color: white;
+    }
+    .status-overdue {
+      background-color: #e74c3c;
+      color: white;
+    }
+    .status-cancelled {
+      background-color: #7f8c8d;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <div class="company-name">CONCESIONARIO DE VEHÍCULOS</div>
+    <div class="document-title">FACTURA</div>
+  </div>
+  
+  <div class="info-section">
+    <div class="customer-info">
+      <div class="label">Facturar a:</div>
+      <div>{{customerName}}</div>
+      <div>{{customerAddress}}</div>
+      <div>{{customerEmail}}</div>
+      <div>{{customerPhone}}</div>
+    </div>
+    <div class="invoice-info">
+      <div class="label">Factura:</div>
+      <div>N°: {{invoiceNumber}}</div>
+      <div>Fecha: {{date}}</div>
+      <div>Vencimiento: {{dueDate}}</div>
+      <div class="status status-{{status}}">{{status}}</div>
+    </div>
+  </div>
+  
+  <table>
+    <thead>
+      <tr>
+        <th>Descripción</th>
+        <th>Cantidad</th>
+        <th>Precio Unitario</th>
+        <th>Descuento</th>
+        <th>Impuesto</th>
+        <th>Total</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each items}}
+      <tr>
+        <td>{{description}}</td>
+        <td>{{quantity}}</td>
+        <td class="amount">${{unitPrice}}</td>
+        <td class="amount">{{discount}}%</td>
+        <td class="amount">{{tax}}%</td>
+        <td class="amount">${{subtotal}}</td>
+      </tr>
+      {{/each}}
+    </tbody>
+  </table>
+  
+  <div class="total-section">
+    <div class="total-row">
+      <span class="label">Subtotal:</span>
+      <span>${{totalBeforeTax}}</span>
+    </div>
+    <div class="total-row">
+      <span class="label">Total Impuestos:</span>
+      <span>${{totalTax}}</span>
+    </div>
+    <div class="grand-total">
+      <span class="label">TOTAL:</span>
+      <span>${{totalAmount}}</span>
+    </div>
+  </div>
+  
+  {{#if paymentMethod}}
+  <div class="payment-info">
+    <div class="label">Información de Pago:</div>
+    <div>Método: {{paymentMethod}}</div>
+    <div>Fecha: {{paymentDate}}</div>
+  </div>
+  {{/if}}
+  
+  {{#if notes}}
+  <div class="notes">
+    <div class="label">Notas:</div>
+    <div>{{notes}}</div>
+  </div>
+  {{/if}}
+  
+  <div class="footer">
+    <p>Gracias por su preferencia.</p>
+    <p>Para cualquier consulta relacionada con esta factura, contacte a nuestro departamento de administración.</p>
+  </div>
+</body>
+</html>

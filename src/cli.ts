@@ -41,6 +41,8 @@ Herramientas disponibles:
   inventory      - Gestión de inventario de vehículos
   financing      - Calculadora de financiamiento
   testDrive      - Gestión de pruebas de manejo
+  quotation      - Gestión de cotizaciones
+  invoice        - Gestión de facturas
 
 Ejemplos:
   # Programar una prueba de manejo
@@ -52,8 +54,11 @@ Ejemplos:
   # Buscar vehículos en inventario
   bun run src/cli.ts --tool inventory --method searchInventory --params '{"brand":"Toyota"}'
   
-  # Ver pruebas de manejo programadas
-  bun run src/cli.ts --tool testDrive --method listTestDrives
+  # Crear una cotización
+  bun run src/cli.ts --tool quotation --method createQuotation --params '{"customerId":"CUST-001","customerName":"Carlos López","date":"2024-04-03","expirationDate":"2024-05-03","status":"draft","items":[{"description":"Toyota Corolla 2023","quantity":1,"unitPrice":25000,"discount":2,"tax":16}]}'
+  
+  # Crear una factura
+  bun run src/cli.ts --tool invoice --method createInvoice --params '{"customerId":"CUST-001","customerName":"Carlos López","date":"2024-04-03","dueDate":"2024-05-03","status":"pending","items":[{"description":"Toyota Corolla 2023","quantity":1,"unitPrice":25000,"discount":2,"tax":16}]}'
 `);
     process.exit(0);
   }
