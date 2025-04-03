@@ -4,6 +4,9 @@
   "description": "MCP Server for Car Dealership Management",
   "main": "dist/main.js",
   "type": "module",
+  "bin": {
+    "dealer-mcp-server": "./bin/cli.js"
+  },
   "scripts": {
     "start": "bun run src/main.ts",
     "build": "bun build src/main.ts --outdir dist",
