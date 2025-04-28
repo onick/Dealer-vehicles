@@ -1,3 +1,5 @@
+[![MseeP.ai Security Assessment Badge](https://mseep.net/mseep-audited.png)](https://mseep.ai/app/onick-dealer-vehicles)
+
 # Dealer MCP Server 🚗
 
 ## Descripción
